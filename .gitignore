@@ -1,0 +1,31 @@
+# Nix
+result
+result-*
+.direnv/
+
+# Secrets / local config — never commit
+.env
+.env.*
+*.key
+*.pem
+secrets/
+*.local.*
+
+# Node / JS
+node_modules/
+dist/
+build/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pallium — a private AI you host yourself</title>
+<meta name="description" content="Pallium is a self-hostable private AI stack: run your own AI — local models, memory, a hardened tool-gateway, and a sandboxed agent — on hardware you own. Open source. A VektorGeist project." />
+<meta property="og:title" content="Pallium — a private AI you host yourself" />
+<meta property="og:description" content="Run your own AI on hardware you own. A protective mantle over your mind. Open source, by VektorGeist." />
+<meta property="og:type" content="website" />
+<style>
+  :root{
+    --bg:#0b0c10; --panel:#111219; --panel2:#15161f; --line:#23252f;
+    --ink:#e9e9f0; --muted:#9aa0b0; --faint:#6b7180;
+    --accent:#8b7bf0; --accent2:#5ad1c9; --warm:#e0b15a;
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent2); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px}
+  header{
+    position:sticky; top:0; z-index:10; backdrop-filter:blur(10px);
+    background:rgba(11,12,16,.72); border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; height:60px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px}
+  .brand .mark{
+    width:26px;height:26px;border-radius:7px;
+    background:conic-gradient(from 210deg,var(--accent),var(--accent2),var(--warm),var(--accent));
+    box-shadow:0 0 0 1px #ffffff14 inset;
+  }
+  .nav a.small{color:var(--muted); font-size:14px; margin-left:18px}
+  .hero{padding:96px 0 60px; text-align:center; position:relative; overflow:hidden}
+  .hero::before{
+    content:""; position:absolute; inset:-40% -20% auto; height:520px;
+    background:radial-gradient(60% 60% at 50% 0%, #8b7bf022, transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{color:var(--accent2); font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:18px}
+  h1{font-size:clamp(38px,7vw,68px); line-height:1.03; margin:.1em 0 .25em; letter-spacing:-1px}
+  h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .tag{font-size:clamp(17px,2.4vw,22px); color:var(--muted); max-width:640px; margin:0 auto 14px}
+  .sub{color:var(--faint); max-width:620px; margin:0 auto 30px}
+  .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .btn{
+    display:inline-block; padding:12px 20px; border-radius:10px; font-weight:600; font-size:15px;
+    border:1px solid var(--line); color:var(--ink); background:var(--panel);
+  }
+  .btn.primary{background:linear-gradient(100deg,var(--accent),#6f5fe0); border-color:transparent; color:#fff}
+  .btn:hover{text-decoration:none; border-color:#3a3d4d}
+  .badge{
+    display:inline-block; margin-bottom:26px; padding:5px 12px; border-radius:999px; font-size:12.5px;
+    color:var(--warm); border:1px solid #e0b15a44; background:#e0b15a12;
+  }
+  section{padding:56px 0; border-top:1px solid var(--line)}
+  h2{font-size:clamp(24px,3.4vw,32px); margin:0 0 8px; letter-spacing:-.4px}
+  .lead{color:var(--muted); max-width:720px; margin:0 0 30px}
+  .grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px}
+  .card h3{margin:0 0 6px; font-size:17px}
+  .card p{margin:0; color:var(--muted); font-size:14.5px}
+  .card .k{font-size:12px; color:var(--accent2); text-transform:uppercase; letter-spacing:1px}
+  .why{background:var(--panel2); border-radius:16px; padding:28px; border:1px solid var(--line)}
+  .why p{color:var(--muted); margin:.4em 0}
+  .why strong{color:var(--ink)}
+  ol.steps{counter-reset:s; list-style:none; padding:0; margin:0; display:grid; gap:12px}
+  ol.steps li{position:relative; padding:16px 16px 16px 56px; background:var(--panel); border:1px solid var(--line); border-radius:12px}
+  ol.steps li::before{
+    counter-increment:s; content:counter(s); position:absolute; left:16px; top:16px;
+    width:26px;height:26px;border-radius:8px; display:grid; place-items:center; font-size:13px; font-weight:700;
+    color:#0b0c10; background:linear-gradient(135deg,var(--accent2),var(--accent));
+  }
+  ol.steps b{color:var(--ink)}
+  ol.steps span{color:var(--muted)}
+  .foot{padding:40px 0 60px; color:var(--faint); font-size:14px; text-align:center}
+  .foot a{color:var(--muted)}
+  .foot .vg{display:inline-block; margin-top:8px; color:var(--ink)}
+  .pill{display:inline-block; font-size:12px; color:var(--faint); border:1px solid var(--line); border-radius:999px; padding:3px 10px; margin:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="mark"></span> Pallium</div>
+    <nav>
+      <a class="small" href="#what">What</a>
+      <a class="small" href="#stack">The stack</a>
+      <a class="small" href="#open">Open source</a>
+      <a class="small" href="https://vektorgeist.com" rel="noopener">VektorGeist ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:none">
+    <div class="wrap">
+      <div class="badge">Early / in active development — a VektorGeist project</div>
+      <div class="eyebrow">Self-hostable private AI</div>
+      <h1>A protective mantle<br/>over <span class="grad">your mind</span></h1>
+      <p class="tag">Pallium lets you run your <em>own</em> AI — models, memory, tools, and an agent — on hardware you own. Not in someone else's cloud.</p>
+      <p class="sub">The name is the brain's cortex <em>and</em> a protective cloak. That's the whole idea: your thinking layer, shielded and yours.</p>
+      <div class="cta">
+        <a class="btn primary" href="#stack">See how it works</a>
+        <a class="btn" href="https://vektorgeist.com" rel="noopener">Built by VektorGeist</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p class="lead">The fediverse gave people sovereign social media and self-hosted storage. But the newest, most invasive layer of the internet — AI — still lives almost entirely inside a handful of Big-Tech clouds. Every prompt, document, and memory you give an AI assistant leaves your control.</p>
+      <div class="why">
+        <p><strong>Pallium closes that gap.</strong> It's a single, easy-to-deploy package that runs a complete private AI on a machine you own — a home server or a cheap VPS.</p>
+        <p>Local model inference, an agent memory you keep, private search over your own files, a hardened gateway that lets the AI use tools safely, and a sandboxed agent that can't phone home unless you let it. Personal freedom and portability at the core — your AI is yours to move, no lock-in.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <h2>The stack</h2>
+      <p class="lead">Seven composable pieces, deployed declaratively (NixOS). Bring it up with one command; move it between hosts when you want.</p>
+      <div class="grid">
+        <div class="card"><div class="k">Run</div><h3>Local model serving</h3><p>Your own LLM inference on localhost. Nothing leaves the box. Runs on modest hardware.</p></div>
+        <div class="card"><div class="k">Remember</div><h3>Agent memory & knowledge</h3><p>A memory and knowledge store you own — with a portable format so you can move your "AI self."</p></div>
+        <div class="card"><div class="k">Recall</div><h3>Private retrieval</h3><p>Search across your own files and notes locally. No cloud, no third-party index.</p></div>
+        <div class="card"><div class="k">Protect</div><h3>Secure tool-gateway</h3><p>Every tool the AI calls is checked: anti tool-poisoning, injection scanning, secret redaction, and your approval for anything dangerous.</p></div>
+        <div class="card"><div class="k">Contain</div><h3>Sandbox &amp; egress control</h3><p>The agent runs in an OS-enforced sandbox with a network kill-switch. A misbehaving agent can't reach out or damage the host.</p></div>
+        <div class="card"><div class="k">Control</div><h3>Admin console</h3><p>Configure, watch, and approve from one place — and export your whole stack to another machine.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="new">
+    <div class="wrap">
+      <h2>What's genuinely new</h2>
+      <p class="lead">Self-hosting individual AI parts exists. Running a capable, tool-using agent <em>safely and portably</em> on your own box, as a turnkey stack, does not. That's the research.</p>
+      <div class="grid">
+        <div class="card"><h3>One policy, three boundaries</h3><p>A single declarative rule that spans the tool, OS, and network layers at once — one place to say what the agent may touch.</p></div>
+        <div class="card"><h3>Reproducible private-AI packaging</h3><p>Models + memory + tools + security shipped as one reproducible NixOS module set.</p></div>
+        <div class="card"><h3>Portable AI state</h3><p>Export and move your memory, knowledge, and config between hosts. Anti-lock-in for the AI layer.</p></div>
+        <div class="card"><h3>Safe by default</h3><p>The defaults that make it safe for a non-expert to run an autonomous agent at home.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="open">
+    <div class="wrap">
+      <h2>Open source</h2>
+      <p class="lead">Everything Pallium ships is under a recognised open-source license (Apache-2.0). Security tools earn trust by being auditable — so the core is free and open, forever.</p>
+      <ol class="steps">
+        <li><b>Free &amp; open core.</b> <span>The full stack and the secure gateway are open source. Run it, read it, change it.</span></li>
+        <li><b>Built to a mission.</b> <span>Service portability and personal freedom at the core — a sovereign alternative to Big-Tech AI clouds.</span></li>
+        <li><b>Made by people who ship.</b> <span>VektorGeist builds local-first, privacy-preserving, open-source tools — released to real registries, hardened, and maintained.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="wrap">
+      <h2>Status &amp; roadmap</h2>
+      <p class="lead">Pallium is early — in active design and development, not yet a download. Follow along as the pieces land.</p>
+      <div>
+        <span class="pill">M1 · Deployment framework</span>
+        <span class="pill">M2 · Secure gateway</span>
+        <span class="pill">M3 · Models + memory + retrieval</span>
+        <span class="pill">M4 · Sandbox + egress</span>
+        <span class="pill">M5 · Console + portability</span>
+        <span class="pill">M6 · v1 release + security review</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>Pallium — self-hostable private AI · open source (Apache-2.0)</div>
+    <a class="vg" href="https://vektorgeist.com" rel="noopener">A VektorGeist project → vektorgeist.com</a>
+  </div>
+</footer>
+</body>
+</html>
