@@ -11,6 +11,8 @@ let
   inherit (lib) mkEnableOption mkOption types mkIf;
 in
 {
+  imports = [ ./gateway.nix ./sandbox.nix ];
+
   options.services.pallium = {
     enable = mkEnableOption "the Pallium private AI stack";
 
@@ -32,22 +34,7 @@ in
       # TODO(M3): indexed sources (files/notes), all local.
     };
 
-    # Layer 5 — secure tool-gateway (warden-core) — the security spine
-    gateway = {
-      enable = mkEnableOption "the secure tool-gateway (schema pinning, injection scan, redaction, approvals)";
-      # TODO(M2): policy file, pinned tools, approval mode.
-    };
-
-    # Layer 6 — sandbox & egress control
-    sandbox = {
-      enable = mkEnableOption "OS-sandboxed agent execution";
-      egress = mkOption {
-        type = types.enum [ "deny-all" "allow-list" "open" ];
-        default = "deny-all";
-        description = "Network egress policy for the sandboxed agent (kill-switch is the default).";
-      };
-      # TODO(M4): allow-list hosts, unified policy compilation (N1).
-    };
+    # Layer 5 (gateway) and layer 6 (sandbox) live in ./gateway.nix and ./sandbox.nix.
 
     # Layer 7 — control plane
     console = {
